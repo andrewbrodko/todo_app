@@ -1,0 +1,19 @@
+.task {
+    background-color: aliceblue;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.task h2 {
+    overflow: hidden;
+}
+.task > * {
+    margin: 0;
+    padding: 0;
+}
+.upcoming {
+    background-color: cornsilk;
+}
+.overdueing {
+    background-color: crimson;
+}

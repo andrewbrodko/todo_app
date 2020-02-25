@@ -1,0 +1,101 @@
+.taskBar {
+    display: flex;
+    flex-direction: column;
+    width: 38%;
+    height: 100%;
+    justify-content: space-between;
+}
+.taskBar .list {
+    display: flex;
+    flex-direction: column;
+    height: 62vh;
+    margin: 0.5rem;
+    border-radius: 0.2rem;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+.taskBar .list > * {
+    margin-bottom: 0.5rem;
+}
+.taskBar .list > div:last-child {
+    margin-bottom: 0;
+}
+.taskBar .adder {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s;
+    height: 38%;
+    background-color: #ffc68a;
+    border-radius: 0.2rem 0.2rem 0 0;
+    margin: 0 0.5rem;
+    padding: 0.5rem;
+}
+.taskBar .adder .text {
+    display: flex;
+    flex-wrap: wrap;
+}
+.taskBar .adder .text > input,
+.taskBar .adder .date > input {
+    transition: 0.3s;
+    height: 2.5rem;
+    background-color: #00000008;
+    border-radius: 0.2rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+.taskBar .adder .text > input:hover,
+.taskBar .adder .text > input:focus,
+.taskBar .adder .date > input:hover,
+.taskBar .adder .date > input:focus {
+    background-color: #0000001f;
+}
+.taskBar .adder .date {
+    display: flex;
+    justify-content: space-between;
+}
+.taskBar .adder .date > input {
+    width: 48.5%;
+}
+.taskBar .adder .addTask {
+    background-color: #0000001f;
+    width: 100%;
+    height: 50px;
+    border-radius: 0.2rem;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    cursor: pointer;
+}
+.taskBar .adder > :last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .taskBar {
+        flex-direction: column-reverse;
+    }
+    .taskBar .list {
+        max-height: 70%;
+        height: auto;
+        flex-direction: column-reverse;
+    }
+    .taskBar .adder {
+        min-height: 30%;
+        height: auto;
+        overflow: hidden;
+        border-radius: 0 0 0.2rem 0.2rem;
+    }
+    .taskBar .list > div:last-child {
+        margin-bottom: 0.5rem;
+    }
+    .taskBar .list > div:first-child {
+        margin-bottom: 0;
+    }
+    /* .taskBar .list {
+        height: 80%;
+    }
+    .taskBar .adder {
+        height: 20%;
+    } */
+}
