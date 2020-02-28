@@ -4,6 +4,7 @@
     border-radius: 0.2rem;
     padding: 0.5rem;
     cursor: pointer;
+    user-select: none;
     transition: 0.3s;
 }
 .task h2 {
@@ -20,8 +21,17 @@
     height: 100%;
     overflow: hidden;
 }
-.task .controls > * {
+.task .controls > span {
     padding: 0 4px;
+    border-radius: 0.2rem;
+    margin: 2px;
+    transition: 0.3s;
+}
+.task .controls > span:hover {
+    background-color: #0000001f;
+}
+.task .controls > span:active {
+    background-color: #00000064;
 }
 .task > * {
     margin: 0;

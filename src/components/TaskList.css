@@ -5,27 +5,27 @@
     height: 100%;
     justify-content: space-between;
 }
-.taskBar .list {
+.list {
     position: relative;
     display: flex;
     flex-direction: column;
     height: 62vh;
     margin: 0.5rem;
 }
-.taskBar .list .contents {
+.contents {
     display: flex;
     flex-direction: column;
     border-radius: 0.2rem;
     overflow: scroll;
     scrollbar-width: none;
 }
-.taskBar .list .contents > * {
+.contents > * {
     margin-bottom: 0.5rem;
 }
-.taskBar .list .contents > div:last-child {
+.contents > div:last-child {
     margin-bottom: 0;
 }
-.taskBar .adder {
+.adder {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -35,50 +35,53 @@
     margin: 0 0.5rem;
     padding: 0.5rem;
 }
-.taskBar .adder .text {
+.adder .text {
     display: flex;
     flex-wrap: wrap;
 }
-.taskBar .adder .text > input,
-.taskBar .adder .date > input {
-    margin-bottom: 0.5rem;
-    width: 100%;
-}
-.taskBar .adder .text > input:hover,
-.taskBar .adder .text > input:focus,
-.taskBar .adder .date > input:hover,
-.taskBar .adder .date > input:focus {
-    background-color: #0000001f;
-}
-.taskBar .adder .date {
+.adder .date {
     display: flex;
     justify-content: space-between;
 }
-.taskBar .adder .date > input {
+.adder .text > input,
+.adder .date > input {
+    background-color: #00000008;
+    margin-bottom: 0.5rem;
+}
+.adder .text > input {
+    width: 100%;
+}
+.adder .date > input {
     width: 48.5%;
 }
-.taskBar .adder .addTask {
+.adder .text > input:hover,
+.adder .date > input:hover,
+.adder .text > input:focus,
+.adder .date > input:focus {
     background-color: #0000001f;
+}
+.adder .addTask {
     width: 100%;
     height: 50px;
     border-radius: 0.2rem;
     text-align: center;
     display: grid;
     align-items: center;
+    background-color: #0000001f;
     cursor: pointer;
     user-select: none;
     transition: 0.3s;
 }
-.taskBar .adder .addTask:hover {
+.adder .addTask:hover {
     background-color: #00000036;
 }
-.taskBar .adder .addTask:active {
+.adder .addTask:active {
     background-color: #00000064;
 }
-.taskBar .adder > :last-child {
+.adder > :last-child {
     margin-bottom: 0;
 }
-.taskBar .list .scrollers {
+.scrollers {
     opacity: 0;
     position: absolute;
     display: flex;
@@ -89,15 +92,15 @@
     pointer-events: none;
     justify-content: space-between;
 }
-.taskBar .list .scrollers > div {
+.scrollers > div {
     width: 100%;
     height: 10%;
     pointer-events: all;
 }
-.taskBar .list .scrollers .scrollUp {
+.scrollers .scrollUp {
     background-color: red;
 }
-.taskBar .list .scrollers .scrollDown {
+.scrollers .scrollDown {
     background-color: green;
 }
 
@@ -105,30 +108,22 @@
     .taskBar {
         flex-direction: column-reverse;
     }
-    .taskBar .list {
+    .list {
         max-height: 70%;
-        height: auto;
         flex-direction: column-reverse;
     }
-    .taskBar .list .contents {
+    .contents {
         flex-direction: column-reverse;
     }
-    .taskBar .adder {
+    .adder {
         min-height: 30%;
-        height: auto;
         overflow: hidden;
         border-radius: 0 0 0.2rem 0.2rem;
     }
-    .taskBar .list .contents > div:last-child {
+    .contents > div:last-child {
         margin-bottom: 0.5rem;
     }
-    .taskBar .list .contents > div:first-child {
+    .contents > div:first-child {
         margin-bottom: 0;
     }
-    /* .taskBar .list {
-        height: 80%;
-    }
-    .taskBar .adder {
-        height: 20%;
-    } */
 }
