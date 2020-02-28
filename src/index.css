@@ -30,10 +30,19 @@ input {
     border: none;
     background-color: transparent;
     outline: none;
+    height: 2.5rem;
+    background-color: #00000008;
+    border-radius: 0.2rem;
+    transition: 0.3s;
 }
 
 input[type="date"], input[type="time"] {
     -webkit-appearance: all;
+}
+
+input:required, input:invalid {
+    outline: none;
+    box-shadow: none;
 }
 
 textarea {
