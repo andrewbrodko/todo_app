@@ -6,25 +6,29 @@
     justify-content: space-between;
 }
 .taskBar .list {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 62vh;
     margin: 0.5rem;
+}
+.taskBar .list .contents {
+    display: flex;
+    flex-direction: column;
     border-radius: 0.2rem;
     overflow: scroll;
     scrollbar-width: none;
 }
-.taskBar .list > * {
+.taskBar .list .contents > * {
     margin-bottom: 0.5rem;
 }
-.taskBar .list > div:last-child {
+.taskBar .list .contents > div:last-child {
     margin-bottom: 0;
 }
 .taskBar .adder {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: 0.3s;
     height: 38%;
     background-color: #ffc68a;
     border-radius: 0.2rem 0.2rem 0 0;
@@ -37,10 +41,6 @@
 }
 .taskBar .adder .text > input,
 .taskBar .adder .date > input {
-    transition: 0.3s;
-    height: 2.5rem;
-    background-color: #00000008;
-    border-radius: 0.2rem;
     margin-bottom: 0.5rem;
     width: 100%;
 }
@@ -66,9 +66,39 @@
     display: grid;
     align-items: center;
     cursor: pointer;
+    user-select: none;
+    transition: 0.3s;
+}
+.taskBar .adder .addTask:hover {
+    background-color: #00000036;
+}
+.taskBar .adder .addTask:active {
+    background-color: #00000064;
 }
 .taskBar .adder > :last-child {
     margin-bottom: 0;
+}
+.taskBar .list .scrollers {
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    pointer-events: none;
+    justify-content: space-between;
+}
+.taskBar .list .scrollers > div {
+    width: 100%;
+    height: 10%;
+    pointer-events: all;
+}
+.taskBar .list .scrollers .scrollUp {
+    background-color: red;
+}
+.taskBar .list .scrollers .scrollDown {
+    background-color: green;
 }
 
 @media (max-width: 768px) {
@@ -80,16 +110,19 @@
         height: auto;
         flex-direction: column-reverse;
     }
+    .taskBar .list .contents {
+        flex-direction: column-reverse;
+    }
     .taskBar .adder {
         min-height: 30%;
         height: auto;
         overflow: hidden;
         border-radius: 0 0 0.2rem 0.2rem;
     }
-    .taskBar .list > div:last-child {
+    .taskBar .list .contents > div:last-child {
         margin-bottom: 0.5rem;
     }
-    .taskBar .list > div:first-child {
+    .taskBar .list .contents > div:first-child {
         margin-bottom: 0;
     }
     /* .taskBar .list {

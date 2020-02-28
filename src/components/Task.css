@@ -1,19 +1,47 @@
 .task {
+    position: relative;
     background-color: aliceblue;
     border-radius: 0.2rem;
     padding: 0.5rem;
     cursor: pointer;
+    transition: 0.3s;
 }
 .task h2 {
     overflow: hidden;
 }
+.task .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    overflow: hidden;
+}
+.task .controls > * {
+    padding: 0 4px;
+}
 .task > * {
     margin: 0;
     padding: 0;
+    width: 80%;
 }
 .upcoming {
     background-color: cornsilk;
 }
 .overdueing {
     background-color: crimson;
+}
+.completed {
+    background-color: lightgreen;
+}
+.completed > h2, .completed > p {
+    text-decoration: line-through;
+}
+.dragged {
+    opacity: 0.2;
+    background-color: inherit;
+    box-shadow: inset 0px 0px 0px 2px grey;
 }
