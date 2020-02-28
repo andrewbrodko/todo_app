@@ -32,6 +32,26 @@ export const addTask = data => ({
     data
 })
 
+export const completeTask = data => ({
+    type: 'COMPLETE_TASK',
+    data
+})
+
+export const removeTask = id => ({
+    type: 'REMOVE_TASK',
+    id
+})
+
+export const dragTask = data => ({
+    type: 'DRAG_TASK',
+    data
+})
+
+export const swapTasks = data => ({
+    type: 'SWAP_TASKS',
+    data
+})
+
 export const taskClick = task => ({
     type: 'TASK_CLICKED',
     task

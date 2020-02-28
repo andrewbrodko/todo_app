@@ -4,6 +4,7 @@ const defaultState = [
         head: 'sit amet',
         text: 'vehicula sapien',
         date: new Date(new Date().getTime() + 86400000 * 6),
+        style: '',
         completed: false
     },
     {
@@ -11,6 +12,7 @@ const defaultState = [
         head: 'efficitur tempor',
         text: 'ipsum aliquam',
         date: new Date(new Date().getTime() + 86400000 * 2),
+        style: '',
         completed: false
     },
     {
@@ -18,6 +20,7 @@ const defaultState = [
         head: 'eleifend lacinia',
         text: 'euismod consequat',
         date: new Date(new Date().getTime() + 86400000 * 6),
+        style: '',
         completed: false
     },
     {
@@ -25,6 +28,7 @@ const defaultState = [
         head: 'augue vitae',
         text: 'posuere laoreet purus',
         date: new Date(new Date().getTime() - 86400000 * 2),
+        style: '',
         completed: false
     },
     {
@@ -32,6 +36,7 @@ const defaultState = [
         head: 'amet placerat',
         text: 'porttitor sem',
         date: new Date(new Date().getTime() + 86400000 * 2),
+        style: '',
         completed: false
     },
     {
@@ -39,6 +44,7 @@ const defaultState = [
         head: 'quis ex accumsan',
         text: 'ipsum aliquam',
         date: new Date(new Date().getTime() + 86400000 * 6),
+        style: '',
         completed: false
     },
     {
@@ -46,6 +52,7 @@ const defaultState = [
         head: 'metus eget',
         text: 'ligula mi',
         date: new Date(new Date().getTime() + 86400000 * 6),
+        style: '',
         completed: false
     },
     {
@@ -53,6 +60,7 @@ const defaultState = [
         head: 'vitae felis',
         text: 'non lectus volutpat',
         date: new Date(new Date().getTime() - 86400000 * 2),
+        style: '',
         completed: false
     },
     {
@@ -60,6 +68,7 @@ const defaultState = [
         head: 'et rutrum lectus',
         text: 'lectus dictum',
         date: new Date(new Date().getTime() + 86400000 * 2),
+        style: '',
         completed: false
     },
     {
@@ -67,6 +76,7 @@ const defaultState = [
         head: 'mauris risus finibus',
         text: 'finibus velit',
         date: new Date(new Date().getTime() + 86400000 * 6),
+        style: '',
         completed: false
     },
     {
@@ -74,6 +84,7 @@ const defaultState = [
         head: 'mattis neque',
         text: 'vulputate facilisis',
         date: new Date(new Date().getTime() - 86400000 * 2),
+        style: '',
         completed: false
     },
     {
@@ -81,11 +92,14 @@ const defaultState = [
         head: 'convallis varius',
         text: 'dignissim eleifend lacinia',
         date: new Date(new Date().getTime() + 86400000 * 2),
+        style: '',
         completed: false
     }
 ]
 
 export default (state = defaultState, action) => {
+    var res = [];
+
     switch (action.type) {
     case 'ADD_TASK':
         return [
@@ -95,9 +109,32 @@ export default (state = defaultState, action) => {
                 head: action.data.head,
                 text: action.data.text,
                 date: new Date(Date.parse(action.data.date + ' ' + action.data.time)),
+                style: '',
                 completed: false
             }
         ];
+    case 'COMPLETE_TASK':
+        return state.map(t =>
+            t.id === action.data.id ? {
+                ...action.data,
+                completed: !action.data.completed
+            } : t);
+    case 'REMOVE_TASK':
+        return state.filter(t => t.id !== action.id);
+    case 'DRAG_TASK':
+        return state.map(t =>
+            t.id === action.data.id ? {
+                ...t,
+                style: action.data.dragged ? t.style + ' dragged' : t.style.split(' ').filter(s => s !== 'dragged').join(' ')
+            } : t);
+    case 'SWAP_TASKS':
+        var tempA = state.findIndex(t => t.id === action.data[0]);
+        res = [ ...state.slice(0, tempA), ...state.slice(tempA + 1) ];
+        var tempB = res.findIndex(t => t.id === action.data[1]);
+        if (tempB < tempA) {
+            return [ ...res.slice(0, tempB), ...state.slice(tempA, tempA + 1), ...res.slice(tempB) ];
+        }
+        return [ ...res.slice(0, tempB + 1), ...state.slice(tempA, tempA + 1), ...res.slice(tempB + 1) ];
     case 'TOGGLE_TODO':
         return state.map(t =>
             t.id === action.task.id ? {
