@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import './Description.css';
 
 function Description({ task, submitRef, submitTask }) {
@@ -73,4 +73,4 @@ Description.propTypes = {
     submitTask: PropTypes.func.isRequired
 }
 
-export default Description;
+export default Description

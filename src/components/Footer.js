@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 function Footer({ footer, onFooterLoaded }) {
     useEffect(() => {
@@ -18,4 +18,4 @@ Footer.propTypes = {
     onFooterLoaded: PropTypes.func.isRequired
 }
 
-export default Footer;
+export default Footer
