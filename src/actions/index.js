@@ -7,7 +7,7 @@ export const SWAP_TASKS = 'SWAP_TASKS'
 export const UPDATE_TASK = 'UPDATE_TASK'
 export const ADD_DATA = 'ADD_DATA'
 export const TASK_CLICKED = 'TASK_CLICKED'
-export const UPDATE_POS_DESCRIPTION = 'UPDATE_POS_DESCRIPTION'
+export const UPDATE_DIV_OFFSET = 'UPDATE_DIV_OFFSET'
 export const FOOTER_LOADED = 'FOOTER_LOADED'
 
 // ACTION CREATORS
@@ -54,9 +54,9 @@ export const taskClick = id => ({
     id
 })
 
-export const submitRef = ref => ({
-    type: UPDATE_POS_DESCRIPTION,
-    ref
+export const submitPos = offset => ({
+    type: UPDATE_DIV_OFFSET,
+    offset
 })
 
 // footer.js

@@ -1,11 +1,11 @@
 import {
     TASK_CLICKED,
-    UPDATE_POS_DESCRIPTION
+    UPDATE_DIV_OFFSET
 } from '../actions'
 
 const defaultState = {
     id: 0,
-    pos_description: 0
+    div_offset: 0
 }
 
 export default (state = defaultState, action) => {
@@ -15,10 +15,10 @@ export default (state = defaultState, action) => {
             ...state,
             id: action.id
         };
-    case UPDATE_POS_DESCRIPTION:
+    case UPDATE_DIV_OFFSET:
         return {
             ...state,
-            pos_description: action.ref.current.offsetTop
+            div_offset: action.offset
         };
     default:
         return state;

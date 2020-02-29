@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Description.css';
 
-function Description({ task, submitRef, submitTask }) {
+function Description({ task, submitPos, submitTask }) {
     const dateMax = '2030-01-01';
     const dateMin = new Date().toISOString().split('T')[0];
 
@@ -14,7 +14,7 @@ function Description({ task, submitRef, submitTask }) {
     useEffect(() => {
         var date = new Date(task.date.getTime() - task.date.getTimezoneOffset() * 60000);
         if (task.id) {
-            submitRef(ref);
+            submitPos(ref.current.offsetTop);
         }
         var time = date.toISOString().split('T')[1];
 
@@ -69,7 +69,7 @@ Description.propTypes = {
         head: PropTypes.string,
         text: PropTypes.string,
     }).isRequired,
-    submitRef: PropTypes.func.isRequired,
+    submitPos: PropTypes.func.isRequired,
     submitTask: PropTypes.func.isRequired
 }
 
