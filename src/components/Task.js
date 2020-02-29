@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import './Task.css';
 
-function Task({ id, head, date, style, completed, completeTask, removeTask, onClick, onDragStart, onDragEnd, onDrop }) {
+function Task({ state, refL, pos_description, completeTask, removeTask, dragTask, swapTasks, taskClick, toggleTask }) {
     const dueStyling = due => {
         var now = new Date();
         switch (true) {
-        case completed:
+        case state.completed:
             return "task completed";
         case due < now:
             return "task overdueing";
@@ -19,14 +19,44 @@ function Task({ id, head, date, style, completed, completeTask, removeTask, onCl
     const clickHandle = (e) => {
         switch (e.target.className) {
         case 'V':
-            completeTask();
+            completeTask(state.id);
             break;
         case 'X':
-            removeTask();
+            removeTask(state.id);
             break;
         default:
-            onClick();
+            onClick(state.id);
         }
+    };
+    const findTaskNode = target => {
+        if (target !== null) {
+            if (target.tagName === 'DIV' && target.className.includes('task')) {
+                return target;
+            } else {
+                return findTaskNode(target.parentNode);
+            }
+        }
+    };
+
+    const onDragStart = e => {
+        e.dataTransfer.setData('id', state.id);
+        dragTask({ id: state.id, dragged: true });
+    };
+    const onDragEnd = e => {
+        dragTask({ id: state.id, dragged: false });
+    };
+    const onDrop = e => {
+        refL.current.scrollTo(2000, 2000)
+        var node = findTaskNode(e.target);
+        if (node !== undefined) {
+            var data = [ e.dataTransfer.getData('id'), findTaskNode(e.target).dataset.id ];
+            data[0] !== data[1] ? swapTasks(data.map(i => parseInt(i))) : e.preventDefault();
+        }
+        e.preventDefault();
+    };
+    const onClick = () => {
+        window.scrollTo(0, pos_description);
+        taskClick(state.id);
     };
 
     const options = {
@@ -39,15 +69,16 @@ function Task({ id, head, date, style, completed, completeTask, removeTask, onCl
     };
 
     return (
-        <div className={dueStyling(date) + style}
-            data-id={id}
-            onClick={clickHandle}
+        <div className={dueStyling(state.date) + state.style}
+            data-id={state.id}
             onDragStart={onDragStart}
             onDragOver={(e) => e.preventDefault()}
             onDragEnd={onDragEnd}
             onDrop={onDrop} draggable>
-            <h2>{head}</h2>
-            <p>{date.toLocaleDateString(undefined, options)}</p>
+            <div className="brief" onClick={clickHandle}>
+                <h2>{state.head}</h2>
+                <p>{state.date.toLocaleDateString(undefined, options)}</p>
+            </div>
             <div className="controls">
                 <span className="V" onClick={clickHandle}>V</span>
                 <span className="X" onClick={clickHandle}>X</span>
@@ -57,17 +88,20 @@ function Task({ id, head, date, style, completed, completeTask, removeTask, onCl
 }
 
 Task.propTypes = {
-    id: PropTypes.number.isRequired,
-    head: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date).isRequired,
-    style: PropTypes.string.isRequired,
-    completed: PropTypes.bool.isRequired,
+    state: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        head: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+        date: PropTypes.instanceOf(Date).isRequired,
+        style: PropTypes.string.isRequired,
+        completed: PropTypes.bool.isRequired,
+    }).isRequired,
+    pos_description: PropTypes.number.isRequired,
     completeTask: PropTypes.func.isRequired,
     removeTask: PropTypes.func.isRequired,
-    onClick: PropTypes.func.isRequired,
-    onDragStart: PropTypes.func.isRequired,
-    onDragEnd: PropTypes.func.isRequired,
-    onDrop: PropTypes.func.isRequired
+    dragTask: PropTypes.func.isRequired,
+    swapTasks: PropTypes.func.isRequired,
+    taskClick: PropTypes.func.isRequired
 }
 
-export default Task;
+export default Task
