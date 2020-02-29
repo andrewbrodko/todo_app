@@ -14,6 +14,17 @@
 .description > textarea {
     margin: 0 auto auto auto;
 }
+.description .date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0.5rem;
+}
+.description .date > input {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    width: 48.5%;
+}
 
 @media (max-width: 768px) {
     .description {

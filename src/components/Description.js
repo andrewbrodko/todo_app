@@ -44,21 +44,23 @@ function Description({ task, submitPos, submitTask }) {
         <div className="description" ref={ref}>
             <input type="text" ref={refH} onChange={submitHead} disabled={task.id === undefined || task.completed}></input>
             <textarea ref={refT} onChange={submitText} disabled={task.id === undefined || task.completed}></textarea>
-            <input
-                type="date"
-                ref={refDD}
-                onChange={submitDate}
-                required={true}
-                max={dateMax}
-                hidden={task.id === undefined}
-                disabled={task.id === undefined || task.completed}></input>
-            <input
-                type="time"
-                ref={refHH}
-                onChange={submitDate}
-                required={true}
-                hidden={task.id === undefined}
-                disabled={task.id === undefined || task.completed}></input>
+            <div className="date">
+                <input
+                    type="date"
+                    ref={refDD}
+                    onChange={submitDate}
+                    required={true}
+                    max={dateMax}
+                    hidden={task.id === undefined}
+                    disabled={task.id === undefined || task.completed}></input>
+                <input
+                    type="time"
+                    ref={refHH}
+                    onChange={submitDate}
+                    required={true}
+                    hidden={task.id === undefined}
+                    disabled={task.id === undefined || task.completed}></input>
+            </div>
             <div onClick={ () => window.scroll(0, 0) } hidden={true}>back</div>
         </div>
     );
