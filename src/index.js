@@ -8,7 +8,7 @@ import 'normalize.css';
 import './index.css';
 
 import rootReducer from './reducers';
-import VTaskList from './containers/VTaskList';
+import VTaskBar from './containers/VTaskBar';
 import VDescription from './containers/VDescription';
 import VFooter from './containers/VFooter'
 import * as serviceWorker from './serviceWorker';
@@ -20,7 +20,7 @@ const store = createStore(rootReducer, compose(
 
 ReactDOM.render(
     <Provider store={store}>
-        <VTaskList />
+        <VTaskBar />
         <VDescription />
         <VFooter />
     </Provider>,
