@@ -4,7 +4,7 @@ import Task from '../components/Task';
 
 export default connect(
     state => ({
-        pos_description: state.description.pos_description
+        div_offset: state.description.div_offset
     }),
     dispatch => ({
         completeTask: data => dispatch(completeTask(data)),

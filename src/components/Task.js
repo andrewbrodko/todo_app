@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Task.css';
 
-function Task({ state, refL, pos_description, completeTask, removeTask, dragTask, swapTasks, taskClick, toggleTask }) {
+function Task({ state, refL, div_offset, completeTask, removeTask, dragTask, swapTasks, taskClick, toggleTask }) {
     const dueStyling = due => {
         var now = new Date();
         switch (true) {
@@ -55,7 +55,7 @@ function Task({ state, refL, pos_description, completeTask, removeTask, dragTask
         e.preventDefault();
     };
     const onClick = () => {
-        window.scrollTo(0, pos_description);
+        window.scrollTo(0, div_offset);
         taskClick(state.id);
     };
 
@@ -96,7 +96,7 @@ Task.propTypes = {
         style: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired,
     }).isRequired,
-    pos_description: PropTypes.number.isRequired,
+    div_offset: PropTypes.number.isRequired,
     completeTask: PropTypes.func.isRequired,
     removeTask: PropTypes.func.isRequired,
     dragTask: PropTypes.func.isRequired,
