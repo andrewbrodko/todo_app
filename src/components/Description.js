@@ -13,7 +13,7 @@ function Description({ task, submitPos, submitTask }) {
     const refHH = useRef();
     useEffect(() => {
         var date = new Date(task.date.getTime() - task.date.getTimezoneOffset() * 60000);
-        if (task.id) {
+        if (task.id !== undefined) {
             submitPos(ref.current.offsetTop);
         }
         var time = date.toISOString().split('T')[1];
