@@ -1,3 +1,12 @@
+import {
+    ADD_TASK,
+    COMPLETE_TASK,
+    REMOVE_TASK,
+    DRAG_TASK,
+    SWAP_TASKS,
+    UPDATE_TASK
+} from '../actions'
+
 const defaultState = [
     {
         id: 0,
@@ -98,10 +107,8 @@ const defaultState = [
 ]
 
 export default (state = defaultState, action) => {
-    var res = [];
-
     switch (action.type) {
-    case 'ADD_TASK':
+    case ADD_TASK:
         return [
             ...state,
             {
@@ -113,35 +120,29 @@ export default (state = defaultState, action) => {
                 completed: false
             }
         ];
-    case 'COMPLETE_TASK':
+    case COMPLETE_TASK:
         return state.map(t =>
-            t.id === action.data.id ? {
-                ...action.data,
-                completed: !action.data.completed
+            t.id === action.id ? {
+                ...t,
+                completed: !t.completed
             } : t);
-    case 'REMOVE_TASK':
+    case REMOVE_TASK:
         return state.filter(t => t.id !== action.id);
-    case 'DRAG_TASK':
+    case DRAG_TASK:
         return state.map(t =>
             t.id === action.data.id ? {
                 ...t,
                 style: action.data.dragged ? t.style + ' dragged' : t.style.split(' ').filter(s => s !== 'dragged').join(' ')
             } : t);
-    case 'SWAP_TASKS':
+    case SWAP_TASKS:
         var tempA = state.findIndex(t => t.id === action.data[0]);
-        res = [ ...state.slice(0, tempA), ...state.slice(tempA + 1) ];
+        var res = [ ...state.slice(0, tempA), ...state.slice(tempA + 1) ];
         var tempB = res.findIndex(t => t.id === action.data[1]);
         if (tempB < tempA) {
             return [ ...res.slice(0, tempB), ...state.slice(tempA, tempA + 1), ...res.slice(tempB) ];
         }
         return [ ...res.slice(0, tempB + 1), ...state.slice(tempA, tempA + 1), ...res.slice(tempB + 1) ];
-    case 'TOGGLE_TODO':
-        return state.map(t =>
-            t.id === action.task.id ? {
-                ...t,
-                completed: !t.completed
-            } : t);
-    case 'UPDATE_TASK':
+    case UPDATE_TASK:
         return state.map(t =>
             t.id === action.task.id ? {
                 ...t,

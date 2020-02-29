@@ -1,3 +1,5 @@
+import { FOOTER_LOADED } from '../actions'
+
 const initialState = {
     isLoaded: false,
     onLoad: { }
@@ -5,7 +7,7 @@ const initialState = {
 
 export default function footer(state = initialState, action) {
     switch (action.type) {
-    case 'FOOTER_LOADED':
+    case FOOTER_LOADED:
         return {
             ...state,
             isLoaded: action.isLoaded

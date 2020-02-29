@@ -1,3 +1,5 @@
+import { ADD_DATA } from '../actions'
+
 var date = new Date();
 date.setDate(date.getDate() + 1);
 const defaultState = {
@@ -9,7 +11,7 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-    case 'SUBMIT_ADD_DATA':
+    case ADD_DATA:
         return {
             ...state,
             ...action.data
