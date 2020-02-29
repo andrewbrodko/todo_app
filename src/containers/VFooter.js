@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { onFooterLoaded } from '../actions'
+import { onFooterLoaded } from '../actions';
 import Footer from '../components/Footer';
 
 export default connect(
@@ -9,4 +9,4 @@ export default connect(
     dispatch => ({
         onFooterLoaded: isLoaded => dispatch(onFooterLoaded(isLoaded))
     })
-)(Footer);
+)(Footer)

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { submitRef, submitTask } from '../actions'
+import { submitRef, submitTask } from '../actions';
 import Description from '../components/Description';
 
 export default connect(
@@ -17,4 +17,4 @@ export default connect(
         submitRef: ref => dispatch(submitRef(ref)),
         submitTask: task => dispatch(submitTask(task))
     })
-)(Description);
+)(Description)
