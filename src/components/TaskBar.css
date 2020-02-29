@@ -56,13 +56,10 @@
         max-height: 70%;
         flex-direction: column-reverse;
     }
-    .contents {
-        flex-direction: column-reverse;
-    }
-    .contents > div:last-child {
+    .contents > div:first-child {
         margin-bottom: 0.5rem;
     }
-    .contents > div:first-child {
+    .contents > div:last-child {
         margin-bottom: 0;
     }
 }
